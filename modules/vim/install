@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+
+install_package vim
+
+echo "Cloning Vundle"
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+add_profile "alias v='vim'"
+add_profile "set -o vi"

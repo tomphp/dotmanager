@@ -46,6 +46,7 @@ function run_install_module {
 
   echo "Installing module $name"
   export CURRENT_MODULE=$name
+  mkdir -p "$(module_installation_dir)"
 
   "${MODULE_DIR}/${name}/install"
 }

@@ -8,7 +8,6 @@ function add_path {
 
   export PATH=$path:$PATH
 
-  mkdir -p "$config_dir"
   echo "$path" >>"$config_dir/path"
 }
 export -f add_path
@@ -18,8 +17,6 @@ function add_profile {
   local config_dir=$(module_installation_dir)
 
   eval "$content"
-
-  mkdir -p "$config_dir"
 
   echo "$content" >>"$config_dir/profile"
 }

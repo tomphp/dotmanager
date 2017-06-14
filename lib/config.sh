@@ -10,7 +10,6 @@ function install_config {
   local src="$(module_config_source_dir)/$name"
   local dest=$(module_installation_dir)
 
-  mkdir -p "$dest"
   cp -f "$src" "$dest"
 }
 export -f install_config

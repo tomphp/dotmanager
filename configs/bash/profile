@@ -8,6 +8,3 @@ alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
 alias ssh="TERM=xterm ssh"
-
-# Use vim mode
-set -o vi

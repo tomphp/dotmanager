@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+set -e
+
+function vim_config {
+  for module in $(installed_modules); do
+    local config_files="$CONFIG_DIR/$module/*.vim"
+
+    if ls $config_files 1>/dev/null 2>&1; then
+      for file in $config_files; do
+        echo "source $(realpath $file)"
+      done
+    fi
+  done
+}
+
+function vim_plugins {
+  for module in $(installed_modules); do
+    local plugins_file="$CONFIG_DIR/$module/vim_plugins"
+
+    if [ -f "$plugins_file" ]; then
+      sed "s/\(.*\)/Plugin '\1'/" "$plugins_file"
+    fi
+  done
+}
+
+function compile_vimrc {
+  echo "set nocompatible"
+  echo "filetype off"
+
+  echo "set rtp+=~/.vim/bundle/Vundle.vim"
+  echo "call vundle#begin()"
+  echo "Plugin 'VundleVim/Vundle.vim'"
+
+  vim_plugins
+
+  echo "call vundle#end()"
+  echo "filetype plugin indent on"
+
+  vim_config
+}
+
+compile_vimrc >~/.vimrc
+
+vim +BundleInstall +qall
