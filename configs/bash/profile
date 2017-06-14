@@ -1,0 +1,13 @@
+if [ -e ~/.local-profile ]; then
+  . ~/.local-profile
+fi
+
+# Aliases
+alias ls='ls -G'
+alias rm="rm -i"
+alias cp="cp -i"
+alias mv="mv -i"
+alias ssh="TERM=xterm ssh"
+
+# Use vim mode
+set -o vi

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -e
+
+install_package curl
+install_package build-essential
+install_package silversearcher-ag
+
+add_path "$HOME/bin"

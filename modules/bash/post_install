@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -e
+
+echo "Compiling the profile to $(bash_profile_file)"
+compile_profile >"$(bash_profile_file)"

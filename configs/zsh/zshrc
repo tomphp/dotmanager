@@ -1,0 +1,45 @@
+# vim: syntax=sh
+#
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+
+plugins=(bundler git opp zsh-syntax-highlighting tmuxinator Composer encode64 common-aliases docker docker-compose)
+
+# User configuration
+
+source $ZSH/oh-my-zsh.sh
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt appendhistory autocd extendedglob nomatch notify
+unsetopt beep share_history
+bindkey -v
+# End of lines configured by zsh-newuser-install
+
+# The following lines were added by compinstall
+zstyle :compinstall filename "$HOME/.zshrc"
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+fpath=(/usr/local/share/zsh-completions $fpath)
+# 10ms for key sequences
+KEYTIMEOUT=1
+
+# VI mode visuals
+function zle-line-init zle-keymap-select {
+    RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
+    RPS2=$RPS1
+    zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select

@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -e
+
+install_package libssl-dev
+install_package libreadline-dev
+install_package zlib1g-dev
+
+echo "Cloning rbenv repo"
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+
+echo "Compiling rbenv"
+cd ~/.rbenv && src/configure && make -C src
+
+echo "Cloning ruby-build"
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+
+add_path "$HOME/.rbenv/bin"
+
+add_profile "$(rbenv init 2>&1)"
+
+latest_ruby_version=$(rbenv install -l | grep '^[0-9. ]*$' | sort | tail -n 1)
+
+echo "Installing Ruby $latest_ruby_version"
+rbenv install $latest_ruby_version
+echo "Setting Ruby $latest_ruby_version as the global version"
+rbenv global $latest_ruby_version

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -e
+
+install_package git
+
+install_config gitconfig
+link_config_to_dotfile gitconfig
+
+install_config gitignore
+link_config_to_dotfile gitignore
+
